@@ -7,6 +7,9 @@ AI Agent 开发与使用教程仓库。
 ### OpenCode
 - [OpenCode 教程](./docs/opencode/opencode.md)
 
+### 环境配置
+- [WSL 安装指南](./docs/windows-wsl/windows-wsl.md) (Windows 用户)
+
 ### Claude Code
 - [Claude Code 教程](./docs/claude-code/claude-code.md)
 

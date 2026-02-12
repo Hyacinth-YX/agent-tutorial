@@ -18,7 +18,7 @@ copy-fonts = true
 additional-css = ["theme/custom.css"]
 additional-js = ["theme/decrypt.js"]
 no-section-label = false
-git-repository-url = "https://github.com/SUFE-AILAB/agent-tutorial.git"
+git-repository-url = "https://github.com/Hyacinth-YX/agent-tutorial"
 git-repository-icon = "fa-github"
 
 [output.html.print]

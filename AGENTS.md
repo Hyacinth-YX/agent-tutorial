@@ -1,33 +1,31 @@
 # AGENTS.md - AI Agent Guidelines
 
-> This file provides instructions for AI coding agents working in this repository.
+> 本文件为 AI 编码代理提供此仓库的工作指南。
 
-## Project Overview
+## 项目概述
 
-This is a **documentation repository** containing tutorials and guides about AI agent development and usage. Content is primarily in Markdown format with supporting images.
+这是一个 **AI Agent 教程仓库**，包含 OpenCode 等工具的安装、配置和使用指南。内容以 Markdown 为主，配合图片和配置文件。
 
-### Topics Covered
-- OpenCode - installation, configuration, usage
-- Claude Code - setup and workflows
-- Agent development tips and techniques
-- Troubleshooting common issues
-- Best practices for working with AI agents
+### 主题覆盖
+- OpenCode - 安装、配置、插件、使用技巧
+- WSL 安装指南 - Windows 用户的 Linux 环境
+- 更多主题按需添加
 
 ---
 
-## Directory Structure
-
-每个专题一个文件夹，包含同名主文档和资产文件夹：
+## 目录结构
 
 ```
 agent-tutorial/
 ├── docs/
 │   ├── opencode/
-│   │   ├── opencode.md      # 主文档
-│   │   └── assets/          # 图片等资源
-│   └── claude-code/
-│       ├── claude-code.md
-│       └── assets/
+│   │   ├── opencode.md           # 主文档
+│   │   └── assets/
+│   │       ├── fig/              # 截图、示意图
+│   │       │   └── xxx.png
+│   │       └── *.jsonc           # 配置模板文件
+│   └── windows-wsl/
+│       └── windows-wsl.md
 ├── README.md
 └── AGENTS.md
 ```
@@ -35,94 +33,93 @@ agent-tutorial/
 **组织原则：**
 - 每个专题一个文件夹，文件夹名使用 `kebab-case`
 - 主文档与文件夹同名，如 `opencode/opencode.md`
-- 图片存放在同级的 `assets/` 目录下，路径简短：`./assets/xxx.png`
-- 只有当文档过长时才拆分为多个子文档
+- 图片存放在 `assets/fig/` 目录下
+- 配置模板（如 `.jsonc`）放在 `assets/` 根目录
 
 ---
 
-## File Naming Conventions
+## 文件命名规范
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Topic folders | `kebab-case` | `opencode/`, `claude-code/` |
-| Main document | 与文件夹同名 | `opencode/opencode.md` |
-| Images | `descriptive-name.png` | `config-screen.png` (无需前缀) |
+| 类型 | 规范 | 示例 |
+|------|------|------|
+| 专题文件夹 | `kebab-case` | `opencode/`, `windows-wsl/` |
+| 主文档 | 与文件夹同名 | `opencode/opencode.md` |
+| 图片 | `descriptive-name.png` | `opencode-vscode-ext.png` |
+| 配置模板 | `descriptive-name.jsonc` | `oh-my-opencode-template.jsonc` |
 
 ---
 
-## Markdown Style Guidelines
+## Markdown 风格指南
 
-### Headings
-- Use ATX-style headings (`#`, `##`, `###`)
-- Only one H1 per document (title)
-- Include blank line before and after headings
+### 标题
+- 使用 ATX 风格（`#`, `##`, `###`）
+- 每个文档只有一个 H1（标题）
+- 标题前后保留空行
 
-```markdown
-# Document Title
-
-## Section
-
-### Subsection
-```
-
-### Code Blocks
-- Always specify language for syntax highlighting
-- Use fenced code blocks (triple backticks)
+### 代码块
+- 始终指定语言以启用语法高亮
+- 使用围栏代码块（三个反引号）
 
 ````markdown
 ```bash
-npm install opencode
+npm install opencode-ai
 ```
 
-```typescript
-const agent = new Agent();
+```json
+{
+  "plugin": ["oh-my-opencode"]
+}
 ```
 ````
 
-### Links
-- Use relative links for internal references
-- Use descriptive link text
+### 链接
+- 内部引用使用相对路径
+- 链接文本应描述目标内容
 
 ```markdown
-See the [OpenCode guide](../opencode/opencode.md) for details.
+参见 [WSL 安装指南](../windows-wsl/windows-wsl.md)。
 ```
 
-### Images
-- Store images in the topic's `assets/` folder
-- Use relative paths: `./assets/filename.png`
-- Include alt text for accessibility
+### 图片
+- 存放在专题的 `assets/fig/` 目录
+- 使用相对路径：`./assets/fig/xxx.png`
+- 包含 alt 文本
 
 ```markdown
-![Configuration screen](./assets/config-screen.png)
+![VSCode 插件界面](./assets/fig/opencode-vscode-ext.png)
 ```
-
-### Lists
-- Use `-` for unordered lists
-- Use `1.` for ordered lists
-- Indent nested items with 2 spaces
 
 ---
 
-## Content Guidelines
+## 内容指南
 
-### Tutorial Structure
-每个教程文档应包含以下小节（根据实际内容调整）：
+### 文档结构
 
-1. **标题 & 简介** - 概述本文涵盖的内容
-2. **前置条件** - 所需工具、版本、知识
-3. **步骤** - 编号的顺序指令
-4. **验证** - 如何确认操作成功
-5. **常见问题** - 常见问题及解决方法
-6. **下一步** - 相关主题或进阶内容
+每个文档应包含（根据实际调整）：
 
-### Tone & Style
-- 使用简洁清晰的中文
-- 使用第二人称（"你"、"你的"）
-- 句子要简短
-- 尽可能提供示例
-- 避免不加解释的术语
+1. **标题 & 简介** - 一句话说明本文内容
+2. **前置条件** - 所需工具、版本
+3. **正文** - 按逻辑分节，不必严格编号
+4. **常见问题** - 实际遇到的问题和解决方案
+5. **相关资源** - 外部链接、参考文档
 
-### Screenshots
+### 写作风格
+
+- **语言**：中文为主，代码/命令保持英文
+- **人称**：使用第二人称（"你"、"你的"）
+- **简洁**：句子简短，避免冗余
+- **实用**：提供可执行的命令和配置示例
+- **真实**：基于实际使用经验，包含具体推荐
+
+### 配置示例
+
+当提供配置文件示例时：
+- 使用 `.jsonc` 格式（允许注释）
+- 添加注释解释关键配置项
+- 放在 `assets/` 目录并在正文中引用
+
+### 截图
+
 - 只截取相关区域
 - 高亮重要元素（箭头、框）
 - 使用 PNG 格式
@@ -130,72 +127,61 @@ See the [OpenCode guide](../opencode/opencode.md) for details.
 
 ---
 
-## Common Tasks
+## 常用操作
 
-### Adding a New Topic
+### 添加新主题
 
-1. 在 `docs/` 下创建专题文件夹，如 `docs/new-agent/`
-2. 创建主文档 `new-agent.md`
-3. 创建 `assets/` 文件夹存放图片
+1. 在 `docs/` 下创建文件夹，如 `docs/new-topic/`
+2. 创建主文档 `new-topic.md`
+3. 创建 `assets/fig/` 目录存放图片
 4. 在 README.md 中添加链接
 
 ```
 docs/
-└── new-agent/
-    ├── new-agent.md
+└── new-topic/
+    ├── new-topic.md
     └── assets/
+        └── fig/
 ```
 
-### Updating Existing Content
+### 更新现有内容
 
 1. 先完整阅读现有文件
 2. 做最小化、聚焦的修改
-3. 如有 "Last updated" 日期则更新
-4. 验证所有链接仍然有效
-
-### Splitting Long Documents
-
-只有当文档过长时才拆分：
-1. 在专题文件夹内创建子文档
-2. 保持主文档作为入口，链接到子文档
-3. 所有子文档共用同一个 `assets/` 目录
+3. 保持与现有风格一致
+4. 验证所有链接有效
 
 ---
 
-## Quality Checklist
+## 质量检查清单
 
-提交内容前，确认：
+提交前确认：
 
 - [ ] Markdown 渲染正确
 - [ ] 所有链接有效
 - [ ] 图片正确显示
-- [ ] 代码示例已测试可用
-- [ ] 拼写和语法检查
-- [ ] 遵循命名规范
+- [ ] 代码/命令已验证可用
+- [ ] 配置示例格式正确
 - [ ] 已添加到 README 索引
 
 ---
 
-## Notes for AI Agents
+## AI Agent 注意事项
 
-1. **保持现有结构** - 未经明确要求不要重组
-2. **匹配现有风格** - 阅读相近文件了解语气
-3. **测试所有代码块** - 确保命令实际可用
+1. **保持现有结构** - 未经要求不要重组目录
+2. **匹配现有风格** - 阅读相近文件了解语气和格式
+3. **验证代码** - 确保命令和配置实际可用
 4. **使用相对路径** - 便于跨克隆移植
-5. **图片放对位置** - 在 topic 的 `assets/` 目录下
+5. **图片放对位置** - 在 `assets/fig/` 目录下
 6. **更新交叉引用** - 添加/删除文件时更新相关链接
 
 ---
 
-## Preview Commands
+## 预览方式
 
-静态文档仓库，无需构建。预览方式：
+静态文档仓库，无需构建：
 
 ```bash
-# 使用 grip (GitHub 风格 Markdown)
-pip install grip
-grip README.md
-
 # VS Code
 # 安装 "Markdown Preview Enhanced" 扩展
 

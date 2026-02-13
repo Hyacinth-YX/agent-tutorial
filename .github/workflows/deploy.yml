@@ -26,6 +26,12 @@ jobs:
         with:
           mdbook-version: 'latest'
 
+      - name: Setup mdbook-admonish
+        run: |
+          mkdir -p /tmp/mdbook-admonish
+          curl -sL https://github.com/tommilligan/mdbook-admonish/releases/download/v1.20.0/mdbook-admonish-v1.20.0-x86_64-unknown-linux-gnu.tar.gz | tar xz -C /tmp/mdbook-admonish
+          sudo install /tmp/mdbook-admonish/mdbook-admonish /usr/local/bin/
+
       - name: Build mdBook
         run: mdbook build
 

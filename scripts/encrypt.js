@@ -46,6 +46,8 @@ function processHtmlFile(filePath) {
     if (!bodyMatch) return;
     
     const bodyContent = bodyMatch[1];
+    const bodyScripts = bodyContent.match(/<script\b[^>]*>[\s\S]*?<\/script>/gi) || [];
+    const preservedScripts = bodyScripts.join('\n');
     
     if (bodyContent.trim().length < 100) return;
     
@@ -56,7 +58,7 @@ function processHtmlFile(filePath) {
         `<html$1 data-encrypted="${encryptedData}">`
     ).replace(
         /<body[^>]*>([\s\S]*?)<\/body>/i,
-        '<body class="content-hidden"></body>'
+        `<body class="content-hidden">${preservedScripts}</body>`
     );
     
     fs.writeFileSync(filePath, newContent);

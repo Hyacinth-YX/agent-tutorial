@@ -13,3 +13,6 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+package-lock.json
+package.json

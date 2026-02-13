@@ -153,6 +153,23 @@
         }
     }
 
+    // innerHTML 插入的 script 不会自动执行，需要重建 script 节点触发执行
+    function executeScripts(container) {
+        const scripts = container.querySelectorAll('script');
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach((attr) => {
+                newScript.setAttribute(attr.name, attr.value);
+            });
+
+            if (oldScript.textContent) {
+                newScript.textContent = oldScript.textContent;
+            }
+
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+    }
+
     // 显示锁定屏幕
     function showLockScreen() {
         // 隐藏原始内容
@@ -180,8 +197,10 @@
             
             if (decrypted) {
                 // 解密成功，恢复内容
+                document.documentElement.removeAttribute('data-encrypted');
                 document.body.innerHTML = decrypted;
-                // 保存密码到 sessionStorage（当前会话有效）
+                executeScripts(document.body);
+                // 需要跨页面继续解密，当前会话内必须保留可用密码（sessionStorage 随标签页关闭清除）
                 sessionStorage.setItem('mdbook_unlocked', 'true');
                 sessionStorage.setItem('mdbook_password', password);
             } else {
@@ -230,7 +249,9 @@
             const password = sessionStorage.getItem('mdbook_password');
             decryptContent(encryptedData, password).then(decrypted => {
                 if (decrypted) {
+                    document.documentElement.removeAttribute('data-encrypted');
                     document.body.innerHTML = decrypted;
+                    executeScripts(document.body);
                 } else {
                     sessionStorage.removeItem('mdbook_unlocked');
                     sessionStorage.removeItem('mdbook_password');

@@ -80,7 +80,19 @@ function walkDir(dir) {
     }
 }
 
+function removeSearchIndexFiles(dir) {
+    const files = fs.readdirSync(dir);
+    files
+        .filter((file) => file.startsWith('searchindex') && file.endsWith('.js'))
+        .forEach((file) => {
+            // searchindex 包含全文明文，删除以避免泄露未解密内容
+            fs.unlinkSync(path.join(dir, file));
+            console.log(`Removed search index: ${path.join(dir, file)}`);
+        });
+}
+
 console.log(`Encrypting book in: ${BOOK_DIR}`);
 console.log(`Password length: ${PASSWORD.length} characters`);
 walkDir(BOOK_DIR);
+removeSearchIndexFiles(BOOK_DIR);
 console.log('Encryption complete!');

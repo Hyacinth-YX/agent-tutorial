@@ -15,7 +15,7 @@
 
 ### 1. 安装 Node.js
 
-**macOS / Linux (推荐 nvm)：**
+**Linux / macOS (推荐 nvm)：**
 
 ```bash
 # 安装 nvm
@@ -27,13 +27,6 @@ source ~/.bashrc  # 或 ~/.zshrc
 # 安装最新 LTS 版本
 nvm install --lts
 nvm use --lts
-```
-
-**Ubuntu/Debian (apt)：**
-
-```bash
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt install -y nodejs
 ```
 
 **验证安装：**
@@ -174,21 +167,51 @@ OpenCode 支持 75+ 模型提供商。首次使用需要配置 API 密钥。
 opencode auth login
 ```
 
-这里可以搜索官方支持的provider，然后按照要求提供auth或者api key。
+选择你需要的 Provider，按提示完成认证即可。
 
-能够直接通过auth login添加的，常见的有github-copilot（使用学生认证可以有挺多额度，直接接入opencode来使用）；openai的codex；智谱的coding plan或者api。
+**常用选项：**
 
-能够直接使用的还有google的gemini-cli的额度，如果使用插件antigravity-auth可以把antigravity的额度拿出来在opencode中使用。对于gemini的模型，这里需要注意的是：
+| Provider | 说明 |
+|----------|------|
+| GitHub Copilot | 学生认证可获得较多额度 |
+| OpenAI Codex | OpenAI 官方编程模型 |
+| 智谱 GLM | Coding Plan 或 API 均可 |
 
-- antigravity-auth有封号的风险（虽然我也使用过一段时间，没被封，但是确实不稳定，特别使用antigravity中的claude额度更是容易刷新频率被限制）；
-- gemini-cli额度（也就是直接auth login登录得到的那个gemini使用额度）是免费的，每天刷新，但是你传输给google的数据有被拿来训练的风险。所以敏感数据不要用这个。
-- 直接使用google的模型都需要连接vpn才行，如果在服务器上使用，需要进行端口映射。antigravity的使用参考：[飞书文档](https://my.feishu.cn/wiki/NSMiwydefiQuAPkozzOcjRySnxc?from=from_copylink)
+---
 
-如果你想要你的agent能够在服务器上无人值守长时间运行，几乎是不可能采用本地vpn+端口映射的方式的。而如果在内部服务器上安装vpn，则是非常危险的，容易被查水表。所以剩下的，在大陆比较好用的，有两个选择：一个是使用开在大陆的中转站（算是灰色地带），另一个是直接使用国产大模型的api。
+### Google Gemini 的使用
 
-关于中转站，有一个叫 [relaypulse](https://relaypulse.top/) 的网站提供挺多中转站的可用性监控。可以用作参考，目前我使用过的是一个叫 SSSAiCode 的中转站。可以通过这个[链接](https://www.sssaicode.com/register?ref=JVEWJB)注册。试用可以买9.9一个月20刀的那个套餐。claude和codex可以在这个里面用，支持最新的4.6和codex。配置的时候，打开安装说明，选择opencode，生成你自己的key（opencode只能用AWS逆向，因为官方api会检测opencode然后封号，现在已经没有了）。选个延迟低的服务器节点，选择操作系统，然后可以看到给出的配置文件，将这个配置文件中的provider中你需要的provider复制到你的 `~/.config/opencode/opencode.json` 中。比如你只需要claude，那就复制anthoropic的那个部分，如果需要codex，那就复制openai的部分。
+Gemini 可以通过两种方式使用：
 
-关于国产大模型，比如智谱的GLM，是可以直接在opencode中认证的，复制购买了套餐的api填入到auth就可以了。
+1. **gemini-cli 额度** — `auth login` 直接登录，免费且每日刷新
+2. **antigravity 插件** — 通过 [antigravity-auth](https://my.feishu.cn/wiki/NSMiwydefiQuAPkozzOcjRySnxc?from=from_copylink) 提取额度
+
+> ⚠️ **注意事项**
+> - gemini-cli 免费额度可能用于训练，**敏感代码请勿使用**
+> - antigravity-auth 存在封号风险，尤其 Claude 额度容易触发频率限制
+> - 国内直连 Google 需要 VPN，服务器部署需做端口映射
+
+---
+
+### 服务器长期运行的方案
+
+如果你需要 Agent 在服务器上无人值守运行，VPN 方案不太现实。在国内有两个主流选择：
+
+**方案一：API 中转站**
+
+[relaypulse](https://relaypulse.top/) 提供中转站可用性监控，可作参考。
+
+以 [SSSAiCode](https://www.sssaicode.com/register?ref=JVEWJB) 为例（9.9元/月体验套餐）：
+
+1. 注册后进入安装说明，选择 OpenCode
+2. 生成你的 API Key（选择 AWS 逆向接口）
+3. 挑选低延迟节点，复制对应 Provider 配置到 `~/.config/opencode/opencode.json`
+
+> 💡 使用 Claude 时，需设置占位变量：`export ANTHROPIC_API_KEY=1` 在你的 `~/.bashrc` 中
+
+**方案二：国产大模型**
+
+智谱 GLM 等国产模型可直接认证，购买套餐后填入 API Key 即可。
 
 ### 2. 配置文件
 
@@ -237,7 +260,7 @@ https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/
 
 你应该根据自己的需要配置模型，模型需要通过id进行指定，你可以在命令行中通过 opencode models 显示所有可用的模型id。
 
-下面有一个我使用的通用配置，里面使用的是GLM-5和copilot的claude结合
+下面有一个我使用的配置样例，可以按需修改，里面使用的是GLM-5和copilot的claude结合
 
 ```json
 {

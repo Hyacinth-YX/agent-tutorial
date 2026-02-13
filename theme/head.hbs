@@ -1,2 +1,27 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="googlebot" content="noindex, nofollow">
+<style>
+  .footer-license {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--sidebar-separator);
+    font-size: 0.85em;
+    color: var(--sidebar-fg);
+    opacity: 0.7;
+    text-align: center;
+  }
+  .footer-license a {
+    color: var(--sidebar-active);
+  }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var content = document.getElementById('content');
+  if (content) {
+    var footer = document.createElement('div');
+    footer.className = 'footer-license';
+    footer.innerHTML = '© 2026 Yao Xu · 本作品采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可证 · 转载请注明出处';
+    content.appendChild(footer);
+  }
+});
+</script>

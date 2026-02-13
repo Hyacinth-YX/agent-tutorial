@@ -18,3 +18,16 @@
 ## 反馈与贡献
 
 欢迎提交 Issue 和 Pull Request。
+
+## 引用
+
+如果本教程对你的研究有帮助，欢迎引用：
+
+```bibtex
+@misc{yaoxu2026agenttutorial,
+  title  = {AI Agent 教程},
+  author = {Yao Xu},
+  year   = {2026},
+  url    = {https://hyacinth-yx.github.io/agent-tutorial/}
+}
+```

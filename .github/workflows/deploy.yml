@@ -1,14 +1,9 @@
-name: Deploy mdBook with Encryption
+name: Deploy mdBook
 
 on:
   push:
     branches: [ main, master ]
   workflow_dispatch:
-    inputs:
-      password:
-        description: 'Encryption password (leave empty to use secret)'
-        required: false
-        default: ''
 
 permissions:
   contents: read
@@ -40,22 +35,6 @@ jobs:
           User-agent: *
           Disallow: /
           EOF
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Encrypt content
-        env:
-          ENCRYPT_PASSWORD: ${{ github.event.inputs.password || secrets.MDBOOK_PASSWORD }}
-        run: |
-          if [ -n "$ENCRYPT_PASSWORD" ]; then
-            node scripts/encrypt.js "$ENCRYPT_PASSWORD" ./book
-            echo "Content encrypted with password"
-          else
-            echo "No password set, skipping encryption"
-          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -13,12 +13,9 @@ default-theme = "light"
 preferred-dark-theme = "navy"
 smart-punctuation = true
 mathjax-support = false
-copy-fonts = true
-additional-css = ["theme/custom.css", "theme/mdbook-admonish.css", "theme/pagetoc.css"]
-additional-js = ["theme/pagetoc.js"]
+additional-css = ["theme/custom.css"]
 no-section-label = false
 git-repository-url = "https://github.com/Hyacinth-YX/agent-tutorial"
-git-repository-icon = "fa-github"
 
 [output.html.print]
 enable = true
@@ -27,8 +24,4 @@ enable = true
 enable = true
 level = 1
 
-[preprocessor.admonish]
-command = "mdbook-admonish"
-assets_version = "3.1.0"
 
-[preprocessor.pagetoc]

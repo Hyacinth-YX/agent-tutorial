@@ -385,16 +385,10 @@ pre > code {
    NAVIGATION
    ============================================================================ */
 
-.nav-chapters {
-  font-family: var(--body-font);
-}
-
-.nav-chapters a {
-  transition: all var(--transition-speed) ease;
-}
-
-.nav-chapters a:hover {
-  text-decoration: none;
+.nav-chapters,
+.mobile-nav-chapters,
+.nav-wide-wrapper {
+  display: none !important;
 }
 
 /* ============================================================================

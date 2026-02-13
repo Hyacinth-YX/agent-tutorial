@@ -24,19 +24,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v2
         with:
-          mdbook-version: '0.4.51'
-
-      - name: Setup mdbook-admonish
-        run: |
-          mkdir -p /tmp/mdbook-admonish
-          curl -sL https://github.com/tommilligan/mdbook-admonish/releases/download/v1.20.0/mdbook-admonish-v1.20.0-x86_64-unknown-linux-gnu.tar.gz | tar xz -C /tmp/mdbook-admonish
-          sudo install /tmp/mdbook-admonish/mdbook-admonish /usr/local/bin/
-
-      - name: Setup mdbook-pagetoc
-        run: |
-          mkdir -p /tmp/mdbook-pagetoc
-          curl -sL https://github.com/slowsage/mdbook-pagetoc/releases/download/v0.2.2/mdbook-pagetoc-v0.2.2-x86_64-unknown-linux-gnu.tar.gz | tar xz -C /tmp/mdbook-pagetoc
-          sudo install /tmp/mdbook-pagetoc/mdbook-pagetoc /usr/local/bin/
+          mdbook-version: '0.5.2'
 
       - name: Build mdBook
         run: mdbook build

@@ -34,6 +34,13 @@ jobs:
       - name: Build mdBook
         run: mdbook build
 
+      - name: Add robots.txt
+        run: |
+          cat > ./book/robots.txt << 'EOF'
+          User-agent: *
+          Disallow: /
+          EOF
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:

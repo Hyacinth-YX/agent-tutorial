@@ -14,7 +14,7 @@ preferred-dark-theme = "navy"
 smart-punctuation = true
 mathjax-support = false
 copy-fonts = true
-additional-css = ["theme/custom.css"]
+additional-css = ["theme/custom.css", "theme/mdbook-admonish.css"]
 no-section-label = false
 git-repository-url = "https://github.com/Hyacinth-YX/agent-tutorial"
 git-repository-icon = "fa-github"
@@ -25,3 +25,7 @@ enable = true
 [output.html.fold]
 enable = true
 level = 1
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.1.0"

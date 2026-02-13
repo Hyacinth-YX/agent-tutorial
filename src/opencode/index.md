@@ -592,6 +592,8 @@ OpenCode 支持多会话管理：
 | `@explore` | 强制触发代码库模式搜索 |
 | `@librarian` | 强制搜索外部文档或开源示例 |
 
+ps：补充，最近发现直接使用@来调用，可能会被识别为错误的agent类型，比如在omo配置文件里面的agents下定义的，是主agent，而使用@可能会被误以为是subagent。不过这种情况，如果想要明确说调用的是agent，应该用 agent:oracle
+
 **示例：**
 
 ```plaintext

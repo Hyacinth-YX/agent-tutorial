@@ -19,6 +19,7 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Footer
   var content = document.getElementById('content');
   if (content) {
     var footer = document.createElement('div');
@@ -26,5 +27,81 @@ document.addEventListener('DOMContentLoaded', function() {
     footer.innerHTML = '© 2026 Yao Xu · 本作品采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可证 · 转载请注明出处';
     content.appendChild(footer);
   }
+
+  // Page TOC (right sidebar)
+  var main = document.querySelector('#content main');
+  if (!main) return;
+
+  var headings = main.querySelectorAll('h2, h3');
+  if (headings.length < 2) return;
+
+  var nav = document.createElement('nav');
+  nav.className = 'pagetoc';
+  nav.setAttribute('aria-label', 'Page table of contents');
+
+  // Toggle button
+  var toggle = document.createElement('button');
+  toggle.className = 'pagetoc-toggle';
+  toggle.setAttribute('aria-label', 'Toggle page TOC');
+  toggle.setAttribute('title', 'Toggle page TOC');
+  toggle.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+
+  var pageWrapper = document.getElementById('page-wrapper');
+  if (pageWrapper) {
+    pageWrapper.appendChild(toggle);
+  }
+
+  var title = document.createElement('div');
+  title.className = 'pagetoc-title';
+  title.textContent = '本页目录';
+  nav.appendChild(title);
+
+  var ul = document.createElement('ul');
+
+  headings.forEach(function(h) {
+    if (!h.id) return;
+    var li = document.createElement('li');
+    li.className = 'pagetoc-' + h.tagName.toLowerCase();
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.replace(/^#\s*/, '').replace(/\s*¶$/, '');
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  nav.appendChild(ul);
+
+  if (pageWrapper) {
+    pageWrapper.appendChild(nav);
+  }
+
+  // Toggle collapse/expand
+  var stored = localStorage.getItem('pagetoc-collapsed');
+  if (stored === 'true') {
+    nav.classList.add('collapsed');
+    toggle.classList.add('collapsed');
+  }
+
+  toggle.addEventListener('click', function() {
+    var isCollapsed = nav.classList.toggle('collapsed');
+    toggle.classList.toggle('collapsed', isCollapsed);
+    localStorage.setItem('pagetoc-collapsed', isCollapsed);
+  });
+
+  // Scroll spy: highlight current heading
+  var tocLinks = nav.querySelectorAll('a');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(function(link) { link.classList.remove('active'); });
+        var active = nav.querySelector('a[href="#' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '0px 0px -80% 0px', threshold: 0 });
+
+  headings.forEach(function(h) {
+    if (h.id) observer.observe(h);
+  });
 });
 </script>

@@ -112,6 +112,22 @@ scripts/ralph/ralph.sh --tool claude 100
 
 ![](assets/fig/Pasted%20image%2020260303161005.png)
 
+## 补充说明
+
+### 开始新任务前的注意事项
+
+在开始一个新任务之前，需要先清理旧的任务文件：
+
+```sh
+rm prd.json progress.txt
+```
+
+或者在调用 `/prd` 和 `/ralph` 技能时，明确告诉 Claude **覆盖之前的文件**。
+
+> **原因**：如果不清理旧文件，Shell 脚本执行时可能会读取到旧的任务计划，导致执行错误的内容。
+
+另外是在不同项目中，创建的`prd.json` 和`progress.txt`的位置可能不一样。但这不影响读取，正常使用就好。
+
 ## 扩展资料
 
 - [Ralph Loop 讲解与反思（Bilibili）](https://www.bilibili.com/video/BV16PrUBuENu/?spm_id_from=333.337.search-card.all.click&vd_source=0b96496956a75b45281d07101227b1f3) - 关于ralph loop思路的讲解分享。中文翻译版本可能存在问题，也可以去 YouTube 查看原版。

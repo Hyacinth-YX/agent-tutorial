@@ -6,3 +6,4 @@
 - [Vibe Paper](./vibe-paper/index.md)
 - [MCP 配置](./mcp-zhipu/index.md)
 - [WSL 安装](./windows-wsl/index.md)
+- [Ralph Loop](./ralph-loop/index.md)

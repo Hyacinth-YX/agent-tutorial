@@ -7,3 +7,4 @@
 - [MCP 配置](./mcp-zhipu/index.md)
 - [WSL 安装](./windows-wsl/index.md)
 - [Ralph Loop](./ralph-loop/index.md)
+- [Antigravity Manager](antigravity-manager/index.md)

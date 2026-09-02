@@ -8,6 +8,9 @@
 
 ### 主题覆盖
 - OpenCode - 安装、配置、插件、使用技巧
+- Claude Code - 安装、GLM 接入、使用技巧
+- Vibe Paper - AI 辅助论文写作
+- 终端工具与环境配置
 - WSL 安装指南 - Windows 用户的 Linux 环境
 - 更多主题按需添加
 
@@ -17,22 +20,26 @@
 
 ```
 agent-tutorial/
-├── docs/
+├── src/                        # mdBook 源文件
+│   ├── SUMMARY.md              # mdBook 目录（新页面必须在此注册）
+│   ├── intro.md                # 全书简介
 │   ├── opencode/
-│   │   ├── opencode.md           # 主文档
+│   │   ├── index.md            # 主文档（统一为 index.md）
 │   │   └── assets/
-│   │       ├── fig/              # 截图、示意图
+│   │       ├── fig/            # 截图、示意图
 │   │       │   └── xxx.png
-│   │       └── *.jsonc           # 配置模板文件
+│   │       └── *.jsonc         # 配置模板文件
 │   └── windows-wsl/
-│       └── windows-wsl.md
+│       └── index.md
+├── theme/                      # mdBook 自定义主题
+├── book.toml                   # mdBook 配置
 ├── README.md
 └── AGENTS.md
 ```
 
 **组织原则：**
 - 每个专题一个文件夹，文件夹名使用 `kebab-case`
-- 主文档与文件夹同名，如 `opencode/opencode.md`
+- 主文档统一为 `index.md`，如 `opencode/index.md`
 - 图片存放在 `assets/fig/` 目录下
 - 配置模板（如 `.jsonc`）放在 `assets/` 根目录
 
@@ -43,7 +50,7 @@ agent-tutorial/
 | 类型 | 规范 | 示例 |
 |------|------|------|
 | 专题文件夹 | `kebab-case` | `opencode/`, `windows-wsl/` |
-| 主文档 | 与文件夹同名 | `opencode/opencode.md` |
+| 主文档 | 统一为 `index.md` | `opencode/index.md` |
 | 图片 | `descriptive-name.png` | `opencode-vscode-ext.png` |
 | 配置模板 | `descriptive-name.jsonc` | `oh-my-opencode-template.jsonc` |
 
@@ -77,7 +84,7 @@ npm install opencode-ai
 - 链接文本应描述目标内容
 
 ```markdown
-参见 [WSL 安装指南](../windows-wsl/windows-wsl.md)。
+参见 [WSL 安装指南](../windows-wsl/index.md)。
 ```
 
 ### 图片
@@ -124,6 +131,7 @@ npm install opencode-ai
 - 高亮重要元素（箭头、框）
 - 使用 PNG 格式
 - 控制文件大小（< 500KB）
+- 发布前确认截图中无 API Key、账号邮箱、服务器地址等敏感信息
 
 ---
 
@@ -131,15 +139,16 @@ npm install opencode-ai
 
 ### 添加新主题
 
-1. 在 `docs/` 下创建文件夹，如 `docs/new-topic/`
-2. 创建主文档 `new-topic.md`
+1. 在 `src/` 下创建文件夹，如 `src/new-topic/`
+2. 创建主文档 `src/new-topic/index.md`
 3. 创建 `assets/fig/` 目录存放图片
-4. 在 README.md 中添加链接
+4. 在 `src/SUMMARY.md` 中注册新页面（mdBook 只渲染 SUMMARY 中列出的页面）
+5. 在 README.md 和 `src/intro.md` 的目录中添加链接
 
 ```
-docs/
+src/
 └── new-topic/
-    ├── new-topic.md
+    ├── index.md
     └── assets/
         └── fig/
 ```
@@ -162,7 +171,9 @@ docs/
 - [ ] 图片正确显示
 - [ ] 代码/命令已验证可用
 - [ ] 配置示例格式正确
-- [ ] 已添加到 README 索引
+- [ ] 已添加到 `src/SUMMARY.md`
+- [ ] 已添加到 README 和 `src/intro.md` 索引
+- [ ] `mdbook build` 无警告无报错
 
 ---
 
@@ -173,17 +184,18 @@ docs/
 3. **验证代码** - 确保命令和配置实际可用
 4. **使用相对路径** - 便于跨克隆移植
 5. **图片放对位置** - 在 `assets/fig/` 目录下
-6. **更新交叉引用** - 添加/删除文件时更新相关链接
+6. **更新交叉引用** - 添加/删除文件时更新 `SUMMARY.md`、README、`intro.md` 中的相关链接
 
 ---
 
 ## 预览方式
 
-静态文档仓库，无需构建：
+本项目基于 mdBook 构建：
 
 ```bash
-# VS Code
-# 安装 "Markdown Preview Enhanced" 扩展
+# 本地预览（需安装 mdbook：cargo install mdbook）
+mdbook serve
 
-# 在 GitHub 上直接查看
+# 构建静态站点到 book/
+mdbook build
 ```

@@ -130,4 +130,4 @@ rm prd.json progress.txt
 
 ## 扩展资料
 
-- [Ralph Loop 讲解与反思（Bilibili）](https://www.bilibili.com/video/BV16PrUBuENu/?spm_id_from=333.337.search-card.all.click&vd_source=0b96496956a75b45281d07101227b1f3) - 关于ralph loop思路的讲解分享。中文翻译版本可能存在问题，也可以去 YouTube 查看原版。
+- [Ralph Loop 讲解与反思（Bilibili）](https://www.bilibili.com/video/BV16PrUBuENu/) - 关于ralph loop思路的讲解分享。中文翻译版本可能存在问题，也可以去 YouTube 查看原版。

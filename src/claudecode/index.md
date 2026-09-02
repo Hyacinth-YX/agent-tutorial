@@ -126,6 +126,19 @@ set -g mouse on
 
 ## 常见问题
 
+### Fetch动作被block
+
+claude code显示 `Error: Unable to verify if domain xxx is safe to fetch. This may be due to network restrictions or enterprise security policies blocking claude.ai.` 
+
+这个错误是 **Claude Code 的 WebFetch 安全验证机制** 触发了对 `open.feishu.cn`（飞书开放平台）域名的安全检查失败，通常由 **证书问题、网络代理 / 企业防火墙、或安全配置** 导致。
+
+最直接的临时解决（跳过预检查）
+
+在settings.json 中添加一个配置：
+
+```json
+{ "skipWebFetchPreflight": true }
+```
 ### 如何查看当前配置和连接状态？
 
 使用 `/status` 命令查看版本、模型、MCP 服务器连接状态等信息。
@@ -207,6 +220,76 @@ Claude Code 中有两个核心概念：
 | `/cost` | 查看当前会话的 token 消耗 |
 | `/permissions` | 管理工具权限设置 |
 
+### 实用拓展
+
+#### 任务完成通知插件
+
+Claude Code 默认不会在任务完成后通知用户。当你同时处理多个任务，或者让 Claude Code 在后台运行时，这个通知功能就非常有用了。
+
+可以通过安装 `claude-notifications-go` 插件来实现任务完成通知。
+
+##### 安装步骤
+
+1. **添加插件市场并安装插件**
+
+   进入 Claude Code 交互模式后，执行以下命令：
+
+   ```sh
+   /plugin marketplace add 777genius/claude-notifications-go
+   /plugin install claude-notifications-go@claude-notifications-go
+   ```
+
+2. **初始化插件**
+
+   安装完成后，运行初始化命令下载声音资源：
+
+   ```sh
+   /claude-notifications-go:init
+   ```
+
+##### 验证与故障排除
+
+初始化成功后，可以让 Claude Code 执行一个需要权限确认的简单任务来测试通知功能。
+
+如果初始化失败，或者通知还是没启用（通常是 GitHub 访问问题导致声音资源下载失败），可以配置代理后重新运行 init 命令。告诉 Claude Code 你的代理端口即可：
+
+```
+帮我在环境中设置代理，端口是 7890
+```
+
+##### 自定义设置
+
+通过以下命令可以自定义通知设置：
+
+```sh
+/claude-notifications-go:settings
+```
+
+可配置选项包括：
+
+- **声音选择**：选择不同的提示音
+- **音量大小**：调整通知音量
+- **Webhook 通知**：支持 Discord、飞书机器人、微信推送等
+
+> **提示**：Webhook 功能需要自行配置对应平台的通知机器人，适合需要远程接收通知的场景。
+
+##### 通知效果
+
+正常安装后，任务完成时会弹出系统通知：
+
+![任务完成通知效果](assets/fig/claude-notification.png)
+
+## Skills
+
+### MinerU文档解析 Skills
+
+skill 仓库：https://github.com/Nebutra/MinerU-Skill
+
+安装命令：`npx skills add Nebutra/MinerU-Skill`
+
+必要环境变量：`export MINERU_TOKEN="your-token-here"`
+
+Token申请地址：https://mineru.net/apiManage/token
 
 ## 相关资源
 

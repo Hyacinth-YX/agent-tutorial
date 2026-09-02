@@ -184,7 +184,7 @@ opencode auth login
 Gemini 可以通过两种方式使用：
 
 1. **gemini-cli 额度** — `auth login` 直接登录，免费且每日刷新
-2. **antigravity 插件** — 通过 [antigravity-auth](https://my.feishu.cn/wiki/NSMiwydefiQuAPkozzOcjRySnxc?from=from_copylink) 提取额度
+2. **antigravity 插件** — 通过 [antigravity-auth](https://my.feishu.cn/wiki/NSMiwydefiQuAPkozzOcjRySnxc) 提取额度
 
 > ⚠️ **注意事项**
 > - gemini-cli 免费额度可能用于训练，**敏感代码请勿使用**
@@ -195,23 +195,7 @@ Gemini 可以通过两种方式使用：
 
 ### 服务器长期运行的方案
 
-如果你需要 Agent 在服务器上无人值守运行，VPN 方案不太现实。在国内有两个主流选择：
-
-**方案一：API 中转站**
-
-[relaypulse](https://relaypulse.top/) 提供中转站可用性监控，可作参考。
-
-以 [SSSAiCode](https://www.sssaicode.com/register?ref=JVEWJB) 为例（9.9元/月体验套餐）：
-
-1. 注册后进入安装说明，选择 OpenCode
-2. 生成你的 API Key（选择 AWS 逆向接口）
-3. 挑选低延迟节点，复制对应 Provider 配置到 `~/.config/opencode/opencode.json`
-
-> 💡 使用 Claude 时，需设置占位变量：`export ANTHROPIC_API_KEY=1` 在你的 `~/.bashrc` 中
-
-**方案二：国产大模型**
-
-智谱 GLM 等国产模型可直接认证，购买套餐后填入 API Key 即可。
+如果你需要 Agent 在服务器上无人值守运行，VPN 方案不太现实。国内更稳定的选择是国产大模型：智谱 GLM 等可直接认证，购买套餐后填入 API Key 即可，无需额外的网络配置。
 
 ### 2. 配置文件
 
@@ -732,4 +716,3 @@ ps：补充，最近发现直接使用@来调用，可能会被识别为错误�
 - [oh-my-opencode GitHub](https://github.com/code-yeongyu/oh-my-opencode)
 - [omo-switch GitHub](https://github.com/Aykahshi/omo-switch)
 - [OpenCode Discord 社区](https://discord.gg/opencode)
-- [中转站可用性监控](https://relaypulse.top/)

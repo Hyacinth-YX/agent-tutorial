@@ -40,7 +40,7 @@ Vibe Paper = LaTeX Env + Agent Framework (LLM Model) + Context
 
 关于 LaTeX 环境搭建，推荐参考以下文档。虽然标题写了 Antigravity，但配置完全兼容 VS Code。实际上，如果你只使用 VS Code 而不使用 Antigravity，配置方式也完全一样。
 
-**参考文档**：[Antigravity + LaTeX (WSL方案) 终极配置指南](https://my.feishu.cn/wiki/AECHwFFRBixbuQkNrlZc9bbCn9e?from=from_copylink)
+**参考文档**：[Antigravity + LaTeX (WSL方案) 终极配置指南](https://my.feishu.cn/wiki/AECHwFFRBixbuQkNrlZc9bbCn9e)
 
 这份教程的主要内容包括：
 
@@ -102,8 +102,8 @@ Vibe Paper = LaTeX Env + Agent Framework (LLM Model) + Context
 - 加上 VS Code 插件后，也能拥有完整的 IDE 编程体验
 
 详细安装参考：
-- [OpenCode 安装教程](./opencode/index.md)
-- [Claude Code 安装教程](./claudecode/index.md)
+- [OpenCode 安装教程](../opencode/index.md)
+- [Claude Code 安装教程](../claudecode/index.md)
 
 ### 2.3 选型建议
 

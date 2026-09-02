@@ -5,7 +5,16 @@
 ## 目录
 
 - [OpenCode](./src/opencode/index.md) - AI 编程助手的安装、配置与使用
+- [Claude Code](./src/claudecode/index.md) - Claude Code 安装与智谱 GLM 接入
+- [Vibe Paper](./src/vibe-paper/index.md) - AI 辅助论文写作的经验技巧
+- [MCP 配置](./src/mcp-zhipu/index.md) - 智谱套餐专属 MCP 扩展
 - [WSL 安装](./src/windows-wsl/index.md) - Windows 用户的 Linux 环境配置
+- [Ralph Loop](./src/ralph-loop/index.md) - 解决长任务上下文腐烂的循环调用范式
+- [插件与 Skills 推荐](./src/awesome-plugins-skills/index.md) - 好用的 Agent 插件与 Skills
+- [LLM Wiki](./src/LLM-wiki/index.md) - 用 Obsidian 构建个人知识库的 Skills
+- [cc-switch 配置切换](./src/cc-switch/index.md) - 多编码工具的 API 配置切换
+- [终端工具推荐](./src/terminal-tool/index.md) - zellij / yazi / helix
+- [终端环境配置](./src/wezTerm/index.md) - Nerd Fonts、yazi、tmux 设置
 
 ## 本地预览
 
@@ -47,7 +56,16 @@ agent-tutorial/
 │   ├── SUMMARY.md          # 目录结构
 │   ├── intro.md            # 简介
 │   ├── opencode/           # OpenCode 教程
-│   └── windows-wsl/        # WSL 安装指南
+│   ├── claudecode/         # Claude Code 教程
+│   ├── vibe-paper/         # Vibe Paper 经验
+│   ├── mcp-zhipu/          # 智谱 MCP 配置
+│   ├── windows-wsl/        # WSL 安装指南
+│   ├── ralph-loop/         # Ralph Loop
+│   ├── awesome-plugins-skills/  # 插件与 Skills 推荐
+│   ├── LLM-wiki/           # LLM Wiki（Obsidian 知识库）
+│   ├── cc-switch/          # cc-switch 配置切换
+│   ├── terminal-tool/      # 终端工具推荐
+│   └── wezTerm/            # 终端环境配置
 ├── theme/                  # 自定义主题
 │   ├── custom.css          # 样式
 │   └── head.hbs            # 自定义头部

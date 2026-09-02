@@ -10,5 +10,4 @@
 - [插件与 Skills 推荐](./awesome-plugins-skills/index.md)
 - [LLM Wiki](./LLM-wiki/index.md)
 - [cc-switch 配置切换](./cc-switch/index.md)
-- [终端工具推荐](./terminal-tool/index.md)
-- [终端环境配置](./wezTerm/index.md)
+- [终端工具与配置](./terminal-tool/index.md)

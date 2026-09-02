@@ -15,7 +15,7 @@
 - **插件与 Skills 推荐** - 好用的 Agent 插件与 Skills
 - **LLM Wiki** - 用 Obsidian 构建个人知识库的 Skills
 - **cc-switch 配置切换** - 多编码工具的 API 配置切换
-- **终端工具与配置** - zellij / yazi / helix、Nerd Fonts、tmux 设置
+- **终端工具与配置** - WezTerm 配置、zellij / yazi / helix、Nerd Fonts、tmux 设置
 
 ## 适用人群
 

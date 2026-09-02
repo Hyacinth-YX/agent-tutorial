@@ -13,8 +13,7 @@
 - [插件与 Skills 推荐](./src/awesome-plugins-skills/index.md) - 好用的 Agent 插件与 Skills
 - [LLM Wiki](./src/LLM-wiki/index.md) - 用 Obsidian 构建个人知识库的 Skills
 - [cc-switch 配置切换](./src/cc-switch/index.md) - 多编码工具的 API 配置切换
-- [终端工具推荐](./src/terminal-tool/index.md) - zellij / yazi / helix
-- [终端环境配置](./src/wezTerm/index.md) - Nerd Fonts、yazi、tmux 设置
+- [终端工具与配置](./src/terminal-tool/index.md) - WezTerm 配置、zellij / yazi / helix、Nerd Fonts、tmux
 
 ## 本地预览
 
@@ -64,8 +63,7 @@ agent-tutorial/
 │   ├── awesome-plugins-skills/  # 插件与 Skills 推荐
 │   ├── LLM-wiki/           # LLM Wiki（Obsidian 知识库）
 │   ├── cc-switch/          # cc-switch 配置切换
-│   ├── terminal-tool/      # 终端工具推荐
-│   └── wezTerm/            # 终端环境配置
+│   └── terminal-tool/      # 终端工具与配置
 ├── theme/                  # 自定义主题
 │   ├── custom.css          # 样式
 │   └── head.hbs            # 自定义头部

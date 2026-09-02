@@ -34,7 +34,7 @@
 ```bibtex
 @misc{yaoxu2026agenttutorial,
   title  = {AI Agent 教程},
-  author = {Yao Xu},
+  author = {Xu Yao},
   year   = {2026},
   url    = {https://hyacinth-yx.github.io/agent-tutorial/}
 }

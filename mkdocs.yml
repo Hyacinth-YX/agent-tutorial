@@ -1,0 +1,86 @@
+site_name: AI Agent 教程
+repo_url: https://github.com/Hyacinth-YX/agent-tutorial
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: zh
+  font:
+    text: Noto Sans SC
+    code: Fira Code
+  icon:
+    logo: material/robot-happy-outline
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.expand
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Hyacinth-YX/agent-tutorial
+      name: GitHub 仓库
+
+copyright: Copyright &copy; 2026 Xu Yao · 本作品采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank">CC BY-NC-SA 4.0</a> 许可证 · 转载请注明出处
+
+nav:
+  - 简介: index.md
+  - AI 编程工具:
+      - OpenCode: opencode/index.md
+      - Claude Code: claudecode/index.md
+      - cc-switch 配置切换: cc-switch/index.md
+      - MCP 配置: mcp-zhipu/index.md
+  - 效率与进阶:
+      - 插件与 Skills 推荐: awesome-plugins-skills/index.md
+      - Ralph Loop: ralph-loop/index.md
+  - AI 写作与知识库:
+      - Vibe Paper: vibe-paper/index.md
+      - LLM Wiki: LLM-wiki/index.md
+  - 环境配置:
+      - WSL 安装: windows-wsl/index.md
+      - 终端工具与配置: terminal-tool/index.md

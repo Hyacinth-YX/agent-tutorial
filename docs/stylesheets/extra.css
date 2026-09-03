@@ -1,0 +1,391 @@
+/* 品牌主色覆盖：沿用原 mdBook 主题的蓝色调 */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #3b82f6;
+  --md-accent-fg-color: #8b5cf6;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1e293b;
+  --md-accent-fg-color: #60a5fa;
+}
+
+/* 页头与标签栏：品牌蓝紫渐变（呼应旧版 mdBook 主题） */
+
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-tabs {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-tabs {
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+}
+
+/* ============================================================================
+   侧边栏导航美化
+   ============================================================================ */
+
+/* 链接圆角、内边距与过渡 */
+.md-nav--primary .md-nav__link {
+  border-radius: 0.4rem;
+  margin-right: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* 悬停底色 */
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link:hover {
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link:hover {
+  background-color: rgba(96, 165, 250, 0.12);
+}
+
+/* 当前页面高亮 */
+.md-nav--primary .md-nav__link--active {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+}
+
+/* ============================================================================
+   中文排版优化
+   Material 默认标题字重 300 且 H1 为浅灰色，中文显示过细，此处加粗加深
+   ============================================================================ */
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.md-typeset h1 {
+  color: var(--md-default-fg-color);
+}
+
+/* ============================================================================
+   中等宽度（960px - 1220px）保持左侧导航常驻
+   主题默认在此区间把侧边栏折叠为抽屉（汉堡菜单），此处恢复为桌面形态
+   第 3 节规则镜像主题桌面端（≥1220px）的导航行为
+   ============================================================================ */
+
+@media screen and (min-width: 60em) and (max-width: 76.234375em) {
+  /* 1. 侧边栏回到文档流并吸顶 */
+  [dir="ltr"] .md-sidebar--primary:not([hidden]) {
+    left: auto;
+  }
+
+  .md-sidebar--primary:not([hidden]) {
+    position: sticky;
+    top: 2.4rem;
+    z-index: 1;
+    height: auto;
+    max-height: calc(100vh - 2.4rem);
+    overflow-y: auto;
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+    transition: none;
+  }
+
+  .md-sidebar--primary:not([hidden]) .md-sidebar__scrollwrap {
+    position: static;
+    margin: 0 0.2rem;
+    overflow: visible;
+  }
+
+  /* 侧边栏常驻后隐藏汉堡按钮 */
+  .md-header__button[for="__drawer"] {
+    display: none;
+  }
+
+  /* 2. 取消抽屉式分屏导航（子导航不再是全屏覆盖页） */
+  .md-nav--primary,
+  .md-nav--primary .md-nav {
+    position: static;
+    z-index: auto;
+    display: block;
+    height: auto;
+    background-color: transparent;
+  }
+
+  .md-nav {
+    margin-bottom: -0.4rem;
+  }
+
+  .md-nav--primary .md-nav__item {
+    border-top: none;
+  }
+
+  .md-nav--primary .md-nav__link {
+    margin-top: 0.625em;
+  }
+
+  .md-nav--primary .md-nav__title {
+    height: auto;
+    padding: 0 0.6rem;
+    line-height: 1.5;
+    cursor: default;
+    background: var(--md-default-bg-color);
+    box-shadow: 0 0 0.4rem 0.4rem var(--md-default-bg-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .md-nav--primary .md-nav__title .md-nav__icon {
+    display: none;
+  }
+
+  .md-nav--primary .md-nav__title ~ .md-nav__list {
+    background-color: transparent;
+    box-shadow: none;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  [dir="ltr"] .md-nav--primary .md-nav__list {
+    padding-left: 0.6rem;
+  }
+
+  .md-nav--primary .md-nav__list {
+    padding-bottom: 0.4rem;
+  }
+
+  /* 桌面式折叠展开（配合 navigation.expand 默认展开） */
+  .md-nav__toggle ~ .md-nav {
+    display: grid;
+    grid-template-rows: minmax(0.4rem, 0fr);
+    opacity: 0;
+    visibility: collapse;
+    transform: none;
+    transition: grid-template-rows 0.25s cubic-bezier(0.86, 0, 0.07, 1),
+      opacity 0.25s, visibility 0ms 0.25s;
+  }
+
+  .md-nav__toggle ~ .md-nav > .md-nav__list {
+    overflow: hidden;
+  }
+
+  .md-nav__toggle.md-toggle--indeterminate ~ .md-nav,
+  .md-nav__toggle:checked ~ .md-nav {
+    grid-template-rows: minmax(0.4rem, 1fr);
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  /* 当前页条目：隐藏页内目录切换图标（≡），显示普通链接 */
+  .md-nav--primary .md-nav__link[for="__toc"] {
+    display: none;
+  }
+
+  .md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
+    display: flex;
+  }
+
+  .md-nav--primary .md-nav__link[for="__toc"] ~ .md-nav {
+    display: none;
+  }
+
+  /* 嵌套组展开时箭头旋转朝下 */
+  .md-nav--primary
+    .md-nav__item--nested
+    .md-nav__toggle:checked
+    ~ .md-nav__link
+    .md-nav__icon:after,
+  .md-nav--primary
+    .md-nav__item--nested
+    .md-toggle--indeterminate
+    ~ .md-nav__link
+    .md-nav__icon:after {
+    transform: rotate(90deg);
+  }
+
+  /* 抽屉站点标题块的蓝底白字 → 桌面式灰字 */
+  .md-nav--primary .md-nav__title[for="__drawer"] {
+    background: var(--md-default-bg-color);
+    color: var(--md-default-fg-color--light);
+  }
+
+  /* 当前章节标签颜色与桌面端一致（中性色而非链接蓝） */
+  .md-nav--primary
+    .md-nav__item--active
+    > .md-nav__link:not(.md-nav__link--active) {
+    color: var(--md-default-fg-color);
+  }
+
+  /* 3. tabs 模式下的桌面端表现：只显示当前章节 */
+  .md-nav--lifted > .md-nav__list > .md-nav__item,
+  .md-nav--lifted > .md-nav__title {
+    display: none;
+  }
+
+  /* 抽屉里的仓库链接条不显示 */
+  .md-nav--primary .md-nav__source {
+    display: none;
+  }
+
+  .md-nav--lifted > .md-nav__list > .md-nav__item--active {
+    display: block;
+  }
+
+  .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav__link {
+    background: var(--md-default-bg-color);
+    box-shadow: 0 0 0.4rem 0.4rem var(--md-default-bg-color);
+    margin-top: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .md-nav--lifted
+    > .md-nav__list
+    > .md-nav__item--active
+    > .md-nav__link:not(.md-nav__container) {
+    pointer-events: none;
+  }
+
+  .md-nav--lifted
+    > .md-nav__list
+    > .md-nav__item--active.md-nav__item--section {
+    margin: 0;
+  }
+
+  .md-nav--lifted > .md-nav__list > .md-nav__item > [for] {
+    color: var(--md-default-fg-color--light);
+  }
+
+  .md-nav--lifted .md-nav[data-md-level="1"] {
+    grid-template-rows: minmax(0.4rem, 1fr);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 嵌套导航内的抽屉式标题不显示 */
+  .md-nav__item--nested > .md-nav > .md-nav__title {
+    display: none;
+  }
+
+  /* 章节分组样式与桌面端一致 */
+  .md-nav__item--section {
+    display: block;
+    margin: 1.25em 0;
+  }
+
+  .md-nav__item--section:last-child {
+    margin-bottom: 0;
+  }
+
+  .md-nav__item--section > .md-nav__link {
+    font-weight: 700;
+  }
+
+  .md-nav__item--section > .md-nav__link[for] {
+    color: var(--md-default-fg-color--light);
+  }
+
+  .md-nav__item--section > .md-nav__link:not(.md-nav__container) {
+    pointer-events: none;
+  }
+
+  .md-nav__item--section > .md-nav__link .md-icon,
+  .md-nav__item--section > .md-nav__link > [for] {
+    display: none;
+  }
+
+  [dir="ltr"] .md-nav__item--section > .md-nav {
+    margin-left: -0.6rem;
+  }
+
+  .md-nav__item--section > .md-nav {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .md-nav__item--section > .md-nav > .md-nav__list > .md-nav__item {
+    padding: 0;
+  }
+}
+
+/* ============================================================================
+   抽屉导航（< 960px）改为手风琴式内联展开
+   默认行为：点击章节滑出全屏分页（带返回箭头），此处改为原地展开子列表
+   ============================================================================ */
+
+@media screen and (max-width: 59.984375em) {
+  /* 子导航不再全屏覆盖，回到文档流 */
+  .md-nav--primary .md-nav {
+    position: static;
+    height: auto;
+    background-color: transparent;
+  }
+
+  /* 手风琴展开动画 */
+  .md-nav--primary .md-nav__toggle ~ .md-nav {
+    display: grid;
+    grid-template-rows: minmax(0, 0fr);
+    opacity: 1;
+    transform: none;
+    transition: grid-template-rows 0.25s ease;
+  }
+
+  .md-nav--primary .md-nav__toggle ~ .md-nav > .md-nav__list {
+    overflow: hidden;
+  }
+
+  .md-nav--primary .md-nav__toggle.md-toggle--indeterminate ~ .md-nav,
+  .md-nav--primary .md-nav__toggle:checked ~ .md-nav {
+    grid-template-rows: minmax(0, 1fr);
+    transform: none;
+  }
+
+  /* 分屏的灰色返回标题不再需要 */
+  .md-nav--primary .md-nav__item--nested > .md-nav > .md-nav__title {
+    display: none;
+  }
+
+  /* 展开时箭头旋转朝下 */
+  .md-nav--primary
+    .md-nav__item--nested
+    .md-nav__toggle:checked
+    ~ .md-nav__link
+    .md-nav__icon:after,
+  .md-nav--primary
+    .md-nav__item--nested
+    .md-toggle--indeterminate
+    ~ .md-nav__link
+    .md-nav__icon:after {
+    transform: rotate(90deg);
+  }
+
+  /* 子级列表缩进并去掉分屏样式 */
+  [dir="ltr"] .md-nav--primary .md-nav .md-nav__list {
+    padding-left: 0.6rem;
+  }
+
+  .md-nav--primary .md-nav .md-nav__list {
+    overflow: visible;
+    scroll-snap-type: none;
+    box-shadow: none;
+  }
+
+  /* 当前页条目：隐藏页内目录切换图标（≡），显示普通链接 */
+  .md-nav--primary .md-nav__link[for="__toc"] {
+    display: none;
+  }
+
+  .md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
+    display: flex;
+  }
+
+  /* 抽屉内不显示页内目录 */
+  .md-nav--primary .md-nav__link[for="__toc"] ~ .md-nav {
+    display: none;
+  }
+}
+

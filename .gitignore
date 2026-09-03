@@ -1,5 +1,8 @@
-# mdBook build output
-book/
+# MkDocs build output
+site/
+
+# Python virtual environment
+.venv/
 
 # Node modules
 node_modules/

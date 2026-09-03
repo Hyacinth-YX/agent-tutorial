@@ -1,4 +1,4 @@
-name: Deploy mdBook
+name: Deploy MkDocs
 
 on:
   push:
@@ -21,25 +21,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v2
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          mdbook-version: '0.5.2'
+          python-version: '3.12'
+          cache: pip
 
-      - name: Build mdBook
-        run: mdbook build
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: Add robots.txt
-        run: |
-          cat > ./book/robots.txt << 'EOF'
-          User-agent: *
-          Disallow: /
-          EOF
+      - name: Build MkDocs
+        run: mkdocs build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./book
+          path: ./site
 
   deploy:
     environment:

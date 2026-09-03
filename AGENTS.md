@@ -20,9 +20,8 @@
 
 ```
 agent-tutorial/
-├── src/                        # mdBook 源文件
-│   ├── SUMMARY.md              # mdBook 目录（新页面必须在此注册）
-│   ├── intro.md                # 全书简介
+├── docs/                       # MkDocs 源文件
+│   ├── index.md                # 全书简介（站点首页）
 │   ├── opencode/
 │   │   ├── index.md            # 主文档（统一为 index.md）
 │   │   └── assets/
@@ -31,8 +30,9 @@ agent-tutorial/
 │   │       └── *.jsonc         # 配置模板文件
 │   └── windows-wsl/
 │       └── index.md
-├── theme/                      # mdBook 自定义主题
-├── book.toml                   # mdBook 配置
+├── overrides/                  # MkDocs Material 模板覆盖
+├── mkdocs.yml                  # MkDocs 配置（导航在 nav 中维护）
+├── requirements.txt            # Python 依赖
 ├── README.md
 └── AGENTS.md
 ```
@@ -139,14 +139,14 @@ npm install opencode-ai
 
 ### 添加新主题
 
-1. 在 `src/` 下创建文件夹，如 `src/new-topic/`
-2. 创建主文档 `src/new-topic/index.md`
+1. 在 `docs/` 下创建文件夹，如 `docs/new-topic/`
+2. 创建主文档 `docs/new-topic/index.md`
 3. 创建 `assets/fig/` 目录存放图片
-4. 在 `src/SUMMARY.md` 中注册新页面（mdBook 只渲染 SUMMARY 中列出的页面）
-5. 在 README.md 和 `src/intro.md` 的目录中添加链接
+4. 在 `mkdocs.yml` 的 `nav` 中注册新页面（按内容归入合适的章节分组；MkDocs 只按 nav 组织导航）
+5. 在 README.md 和 `docs/index.md` 的目录中添加链接
 
 ```
-src/
+docs/
 └── new-topic/
     ├── index.md
     └── assets/
@@ -171,9 +171,9 @@ src/
 - [ ] 图片正确显示
 - [ ] 代码/命令已验证可用
 - [ ] 配置示例格式正确
-- [ ] 已添加到 `src/SUMMARY.md`
-- [ ] 已添加到 README 和 `src/intro.md` 索引
-- [ ] `mdbook build` 无警告无报错
+- [ ] 已添加到 `mkdocs.yml` 的 `nav`
+- [ ] 已添加到 README 和 `docs/index.md` 索引
+- [ ] `mkdocs build` 无警告无报错
 
 ---
 
@@ -184,18 +184,21 @@ src/
 3. **验证代码** - 确保命令和配置实际可用
 4. **使用相对路径** - 便于跨克隆移植
 5. **图片放对位置** - 在 `assets/fig/` 目录下
-6. **更新交叉引用** - 添加/删除文件时更新 `SUMMARY.md`、README、`intro.md` 中的相关链接
+6. **更新交叉引用** - 添加/删除文件时更新 `mkdocs.yml` 的 `nav`、README、`index.md` 中的相关链接
 
 ---
 
 ## 预览方式
 
-本项目基于 mdBook 构建：
+本项目基于 MkDocs（Material 主题）构建：
 
 ```bash
-# 本地预览（需安装 mdbook：cargo install mdbook）
-mdbook serve
+# 安装依赖（建议使用虚拟环境）
+pip install -r requirements.txt
 
-# 构建静态站点到 book/
-mdbook build
+# 本地预览（http://127.0.0.1:8000）
+mkdocs serve
+
+# 构建静态站点到 site/
+mkdocs build
 ```
